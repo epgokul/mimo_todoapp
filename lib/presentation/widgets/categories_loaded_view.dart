@@ -76,7 +76,7 @@ class CategoriesLoadedView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              category['emoji'],
+              category['emoji'] ?? '',
               style: const TextStyle(fontSize: 26),
             ),
             const SizedBox(height: 8),

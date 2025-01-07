@@ -27,9 +27,12 @@ class TaskPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back)),
                   Text(
-                    category['name'],
+                    category['name'] ?? "Unknown category",
                     style: const TextStyle(
                         fontSize: 17, fontWeight: FontWeight.bold),
                   ),

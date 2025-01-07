@@ -1,14 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/domain/blocs/category/category_bloc.dart';
 import 'package:todo_app/domain/blocs/category/category_event.dart';
 import 'package:todo_app/domain/blocs/category/category_state.dart';
+import 'package:todo_app/presentation/screens/settings_page.dart';
 import 'package:todo_app/presentation/widgets/categories_loaded_view.dart';
 import 'package:todo_app/presentation/widgets/custom_text_field.dart';
 import 'package:todo_app/presentation/widgets/quote_widget.dart';
 
 class CategoriesPage extends StatelessWidget {
-  const CategoriesPage({super.key});
+  CategoriesPage({super.key});
+  final User? user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +20,29 @@ class CategoriesPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            const SafeArea(
+            SafeArea(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleAvatar(
-                    radius: 30,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SettingsPage(
+                              user: user,
+                            ),
+                          ));
+                    },
+                    child: const CircleAvatar(
+                      radius: 30,
+                    ),
                   ),
-                  Text(
+                  const Text(
                     "Categories",
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.search_rounded,
                     size: 40,
                   )
